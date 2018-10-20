@@ -16,7 +16,7 @@ import com.bibiloteca.models.Projeto;
 import com.bibiloteca.services.ProjetoService;
 
 @RestController
-@RequestMapping("api/pessoa")
+@RequestMapping("api/projeto")
 public class ProjetoController {
 
 	@Autowired
