@@ -74,21 +74,23 @@ public class StorageService {
 
 		try {
 			String conteudo = new String(file.getBytes(), "ISO-8859-1");
-			strBuilder.append(conteudo.trim().isEmpty() ? String.format("Arquivo: %s vázio.", fileResponse.getFileName()) : conteudo);
+			strBuilder
+					.append(conteudo.trim().isEmpty() ? String.format("Arquivo: %s vázio.", fileResponse.getFileName())
+							: conteudo);
 		} catch (IOException e) {
 			logger.error(e.getMessage());
 			throw new RuntimeException("Erro ao ler arquivo");
 		}
 
 		LocalDateTime hour = LocalDateTime.now();
-		strBuilder.append(String.format("%n%n\tArquivo lido com sucesso, hora atual: %s:%s:%s", hour.getHour(), hour.getMinute(), hour.getSecond()));
+		strBuilder.append(String.format("%n%n\tArquivo lido com sucesso, hora atual: %s:%s:%s", hour.getHour(),
+				hour.getMinute(), hour.getSecond()));
 
 		return strBuilder.toString();
 	}
 
 	private UploadFileResponse fileResponse(MultipartFile file) {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
 				.path(fileName).toUriString();
 
